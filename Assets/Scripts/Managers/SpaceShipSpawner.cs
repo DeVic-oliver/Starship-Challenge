@@ -12,6 +12,25 @@ public class SpaceShipSpawner : MonoBehaviour
 
     int countFibbonacci = 0;
 
+    private List<SpaceShip> _pool = new List<SpaceShip>();
+
+
+    private void Awake()
+    {
+        CreateSpaceShipPool();
+    }
+
+    private void CreateSpaceShipPool()
+        }
+    }
+
+    {
+        {
+            SpaceShip temp = Instantiate(_object);
+            temp.gameObject.SetActive(false);
+            _pool.Add(temp);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

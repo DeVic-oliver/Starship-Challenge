@@ -58,7 +58,7 @@ public class SpaceShip : MonoBehaviour
 
     private void OnDisable()
     {
-        
+        transform.position = Vector3.zero;
     }
 
     // Update is called once per frame
