@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using Assets.Scripts.Service;
 
 //Fibonacci Spawner
 public class SpaceShipSpawner : MonoBehaviour
 {
 
-    [SerializeField] private SpaceShip _spaceShip;
+    [SerializeField] private SpaceShip _object;
     [SerializeField] private int _fibbonacci = 10;
 
     int countFibbonacci = 0;
@@ -40,10 +39,16 @@ public class SpaceShipSpawner : MonoBehaviour
         }
     }
 
+    /**
+     *  POOL:
+     *  Os objetos podem ser instanciados primeiro e desativados para serem exibidos por fibonacci;
+     *  
+     */
+
     // Start is called before the first frame update
     void Start()
     {
-        GetFibonacciByCoroutine(8);
+        //GetFibonacciByCoroutine(8);
     }
 
 
@@ -95,7 +100,7 @@ public class SpaceShipSpawner : MonoBehaviour
         if (quantity > 0)
         {
             quantity--;
-            Instantiate(_spaceShip);
+            Instantiate(_object);
             IntantiateSpaceships(quantity);
         }
     }
