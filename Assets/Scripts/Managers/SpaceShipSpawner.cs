@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Assets.Scripts.Service;
 
 //Fibonacci Spawner
 public class SpaceShipSpawner : MonoBehaviour
@@ -21,10 +22,17 @@ public class SpaceShipSpawner : MonoBehaviour
     }
 
     private void CreateSpaceShipPool()
+    {
+        long result = Fibonacci.GetFibonacci(_fibbonacci);
+        if(result > 0)
+        {
+            PopulatePoolList(result);
         }
     }
 
+    private void PopulatePoolList(long result)
     {
+        for (int i = 1; i <= result; i++)
         {
             SpaceShip temp = Instantiate(_object);
             temp.gameObject.SetActive(false);
