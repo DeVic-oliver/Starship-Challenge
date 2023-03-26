@@ -24,6 +24,11 @@ public class SpaceShip : MonoBehaviour
         _spawner = spawner;
     }
 
+    public float GetCurrentSpeed()
+    {
+        return _currentSpeed;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
