@@ -57,7 +57,6 @@ public class SpaceShipSpawner : MonoBehaviour
         return temp;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         StartCoroutine("ReplayFibonacci");
@@ -67,7 +66,7 @@ public class SpaceShipSpawner : MonoBehaviour
     {
         while (true)
         {
-            float delayToReplayMechanicAfterEnds = 5f;
+            float delayToReplayMechanicAfterEnds = 10f;
             yield return new WaitForSeconds(delayToReplayMechanicAfterEnds);
             StartFibonacci();
         }
@@ -93,7 +92,7 @@ public class SpaceShipSpawner : MonoBehaviour
             n1 = n2;
             n2 = nextTerm;
 
-            float delayToNextIteration = 1f;
+            float delayToNextIteration = 0.25f;
             yield return new WaitForSeconds(delayToNextIteration);
             StartCoroutine(StartCreationOfSpaceShipByFibonacci(currentTerm, n1, n2, nextTerm));
         }
