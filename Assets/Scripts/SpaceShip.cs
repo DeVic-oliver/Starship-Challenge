@@ -51,6 +51,7 @@ public class SpaceShip : MonoBehaviour
     private IEnumerator BeginCountdownToDisable()
     {
         yield return new WaitForSeconds(_delayToDisable);
+        _spawner.ReturnToPool();
         gameObject.SetActive(false);
     }
 

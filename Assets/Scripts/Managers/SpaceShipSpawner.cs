@@ -12,6 +12,11 @@ public class SpaceShipSpawner : MonoBehaviour
     private List<SpaceShip> _pool = new List<SpaceShip>();
     private long _poolTotal = 0;
 
+    public void ReturnToPool()
+    {
+        _ui.DecrementActiveSpaceShips();
+    }
+
     private void Awake()
     {
         SetPoolSizeByFibonacci();
