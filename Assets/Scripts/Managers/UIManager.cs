@@ -6,10 +6,14 @@ namespace Assets.Scripts.Managers
 {
     public class UIManager : MonoBehaviour
     {
-        public TextMeshProUGUI CounterDisplay;
-
+        [SerializeField] private TextMeshProUGUI CounterDisplay;
         private long _quantity = 0;
-        
+
+        [Space(15f)]
+        [Header("Speed Radar Setup")]
+        [SerializeField] private TextMeshProUGUI FastestSpeedTMPro;
+        [SerializeField] private TextMeshProUGUI LowestSpeedTMPro;
+
         public void DecrementActiveSpaceShips()
         {
             _quantity--;
@@ -24,16 +28,25 @@ namespace Assets.Scripts.Managers
 
         private void UpdateDisplayText()
         {
-            CounterDisplay.text = _quantity.ToString();
+            string text = "Ships Active: " + _quantity.ToString();
+            CounterDisplay.text = text;
+        }
+
+        public void UpdateFastestSpeed(float speed)
+        {
+            string text = "Fastest Speed Registered: " + speed.ToString();
+            FastestSpeedTMPro.text = text;
+        }
+
+        public void UpdateLowestSpeed(float speed)
+        {
+            string text = "Lowest Speed Registered: " + speed.ToString();
+            LowestSpeedTMPro.text = text;
         }
 
         private void Awake()
         {
             _quantity = 0;
-        }
-
-        private void Start()
-        {
         }
     }
 }
