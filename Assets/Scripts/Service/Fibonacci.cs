@@ -32,7 +32,7 @@ namespace Assets.Scripts.Service
                 n2 = result;
                 return GetFibonacciSum(n1, n2, result);
             }
-
+            _count = 0;
             return nextTerm;
         }
     }
