@@ -14,6 +14,7 @@ public class SpaceShip : MonoBehaviour
     private float _currentSpeed = 0;
     
     [Space(15f)]
+    [Tooltip("Adds the value to the current speed, increasing the total speed over time")]
     [SerializeField] private float _speedIncrement = 1.25f;
 
     [SerializeField] private float _delayToDisable = 1f;
