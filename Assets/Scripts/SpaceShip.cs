@@ -14,6 +14,8 @@ public class SpaceShip : MonoBehaviour
     [Space(15f)]
     [SerializeField] private float _speedIncrement = 1.25f;
 
+    [SerializeField] private float _delayToDisable = 1f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,8 +43,7 @@ public class SpaceShip : MonoBehaviour
 
     private IEnumerator BeginCountdownToDisable()
     {
-        float delayToDisable = 1f;
-        yield return new WaitForSeconds(delayToDisable);
+        yield return new WaitForSeconds(_delayToDisable);
         gameObject.SetActive(false);
     }
 
