@@ -52,6 +52,6 @@ public class SpeedRadar : MonoBehaviour
     private void RegisterLowestSpeed(float speedToRegister)
     {
         _lowestSpeedRegistered = speedToRegister;
-        _ui.UpdateFastestSpeed(_lowestSpeedRegistered);
+        _ui.UpdateLowestSpeed(_lowestSpeedRegistered);
     }
 }
