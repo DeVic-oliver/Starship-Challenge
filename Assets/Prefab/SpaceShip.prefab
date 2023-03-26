@@ -80,6 +80,7 @@ MonoBehaviour:
   _min: 80
   _max: 250
   _speedIncrement: 1.25
+  _delayToDisable: 1
 --- !u!1001 &3302793608652041028
 PrefabInstance:
   m_ObjectHideFlags: 0
