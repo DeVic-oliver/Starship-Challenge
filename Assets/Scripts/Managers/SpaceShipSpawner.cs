@@ -3,95 +3,99 @@ using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Service;
 
-//Fibonacci Spawner
 public class SpaceShipSpawner : MonoBehaviour
 {
 
     [SerializeField] private SpaceShip _object;
-    [SerializeField] private int _fibbonacci = 10;
-
-    int countFibbonacci = 0;
+    [SerializeField] private int _fibbonacci;
 
     private List<SpaceShip> _pool = new List<SpaceShip>();
-
+    private long _poolTotal = 0;
 
     private void Awake()
     {
-        CreateSpaceShipPool();
+        SetPoolSizeByFibonacci();
+        PopulatePool();
     }
 
-    private void CreateSpaceShipPool()
+    private void SetPoolSizeByFibonacci()
     {
-        long result = Fibonacci.GetFibonacci(_fibbonacci);
-        if(result > 0)
+        int fibonacciMinTerm = 1;
+        AssignFibonacciSumInPoolSize(fibonacciMinTerm);
+    }
+
+    private void AssignFibonacciSumInPoolSize(int term){
+        if (term <= _fibbonacci)
         {
-            PopulatePoolList(result);
+            _poolTotal += Fibonacci.GetFibonacci(term);
+            term++;
+            AssignFibonacciSumInPoolSize(term);
         }
     }
 
-    private void PopulatePoolList(long result)
+    private void PopulatePool()
     {
-        for (int i = 1; i <= result; i++)
+        int count = 1;
+        AddSpaceShipToPoolUntilReachsLimit(count);
+    }
+
+    private void AddSpaceShipToPoolUntilReachsLimit(int i)
+    {
+        if( i <= _poolTotal )
         {
-            SpaceShip temp = Instantiate(_object);
-            temp.gameObject.SetActive(false);
+            SpaceShip temp = CreateDeactivatedSpaceShip();
             _pool.Add(temp);
+            i++;
+            AddSpaceShipToPoolUntilReachsLimit(i);
         }
     }
 
-    /**
-     *  POOL:
-     *  Os objetos podem ser instanciados primeiro e desativados para serem exibidos por fibonacci;
-     *  
-     */
+    private SpaceShip CreateDeactivatedSpaceShip()
+    {
+        SpaceShip temp = Instantiate(_object);
+        temp.gameObject.SetActive(false);
+        return temp;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        //GetFibonacciByCoroutine(8);
+        StartCoroutine("ReplayFibonacci");
     }
 
-
-    //private void GetFibonacci(int n)
-    //{
-    //    int term1 = 0;
-    //    int term2 = 1;
-    //    int result = term1 + term2;
-    //    GetFibonacciSum(term1, term2, result);
-    //}
-
-    //private void GetFibonacciSum(long n1, long n2, long nextTerm){
-    //    countFibbonacci++;
-    //    IntantiateByFibbonacciValue(nextTerm);
-    //    if (countFibbonacci < _fibbonacci)
-    //    {
-    //        long result = n1 + n2; 
-    //        n1 = n2;
-    //        n2 = result;
-    //        GetFibonacciSum(n1, n2, result);
-    //    }
-    //}
-
-
-    private void GetFibonacciByCoroutine(int n)
+    private IEnumerator ReplayFibonacci()
     {
-        int term1 = 0;
-        int term2 = 1;
-        int result = term1 + term2;
-        StartCoroutine(GetFibonacciSumCoroutine(term1, term2, result));
-    }
-
-    private IEnumerator GetFibonacciSumCoroutine(long n1, long n2, long nextTerm)
-    {
-        countFibbonacci++;
-        IntantiateSpaceships(nextTerm);
-        if (countFibbonacci < _fibbonacci)
+        while (true)
         {
-            long result = n1 + n2;
+            float delayToReplayMechanicAfterEnds = 5f;
+            yield return new WaitForSeconds(delayToReplayMechanicAfterEnds);
+            StartFibonacci();
+        }
+    }
+
+    private void StartFibonacci()
+    {
+        int initialTerm1 = 0;
+        int initialTerm2 = 1;
+        int result = initialTerm1 + initialTerm2;
+        StartCoroutine(StartCreationOfSpaceShipByFibonacci(initialTerm1, initialTerm1, initialTerm2, result));
+    }
+
+    private IEnumerator StartCreationOfSpaceShipByFibonacci(int currentTerm, long n1, long n2, long result)
+    {
+        currentTerm++;
+        
+        IntantiateSpaceships(result);
+
+        if (currentTerm < _fibbonacci)
+        {
+            long nextTerm = n1 + n2;
             n1 = n2;
-            n2 = result;
-            yield return new WaitForSeconds(1f);
-            StartCoroutine(GetFibonacciSumCoroutine(n1, n2, result));
+            n2 = nextTerm;
+
+            float delayToNextIteration = 1f;
+            yield return new WaitForSeconds(delayToNextIteration);
+            StartCoroutine(StartCreationOfSpaceShipByFibonacci(currentTerm, n1, n2, nextTerm));
         }
     }
 
@@ -100,10 +104,33 @@ public class SpaceShipSpawner : MonoBehaviour
         if (quantity > 0)
         {
             quantity--;
-            Instantiate(_object);
+            ActivePooledObjects();
             IntantiateSpaceships(quantity);
         }
     }
 
+    private void ActivePooledObjects()
+    {
+        long indexListTotal = _poolTotal - 1;
+        ActivePooledObject(indexListTotal);
+    }
 
+    private void ActivePooledObject(long index)
+    {
+        if(index >= 0)
+        {
+            GameObject spaceShip = _pool[(int)index].gameObject;
+            if (!spaceShip.activeInHierarchy)
+            {
+                spaceShip.SetActive(true);
+            }
+            else
+            {
+                index--;
+                ActivePooledObject(index);
+            }
+        }
+        
+    }
 }
+
