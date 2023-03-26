@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Service;
+using Assets.Scripts.Managers;
 
 public class SpaceShipSpawner : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class SpaceShipSpawner : MonoBehaviour
     private List<SpaceShip> _pool = new List<SpaceShip>();
     private long _poolTotal = 0;
 
+    private UIManager _ui;
+
     public void ReturnToPool()
     {
         _ui.DecrementActiveSpaceShips();
@@ -19,8 +22,14 @@ public class SpaceShipSpawner : MonoBehaviour
 
     private void Awake()
     {
+        InitComponents();
         SetPoolSizeByFibonacci();
         PopulatePool();
+    }
+
+    private void InitComponents()
+    {
+        _ui = GetComponent<UIManager>();
     }
 
     private void SetPoolSizeByFibonacci()
@@ -58,6 +67,7 @@ public class SpaceShipSpawner : MonoBehaviour
     private SpaceShip CreateDeactivatedSpaceShip()
     {
         SpaceShip temp = Instantiate(_object);
+        temp.AssignSpawner(this);
         temp.gameObject.SetActive(false);
         return temp;
     }
@@ -127,6 +137,7 @@ public class SpaceShipSpawner : MonoBehaviour
             if (!spaceShip.activeInHierarchy)
             {
                 spaceShip.SetActive(true);
+                _ui.IncrementActiveSpaceShips();
             }
             else
             {
@@ -134,7 +145,6 @@ public class SpaceShipSpawner : MonoBehaviour
                 ActivePooledObject(index);
             }
         }
-        
     }
 }
 
