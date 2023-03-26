@@ -28,7 +28,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3297857715095923578}
+  - {fileID: 1418961449156474493}
   m_Father: {fileID: 9214123498113841318}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9214123498113841318}
   - component: {fileID: 771624621821125262}
+  - component: {fileID: 270529583968724775}
   m_Layer: 0
   m_Name: SpaceShip
   m_TagString: Untagged
@@ -81,24 +82,33 @@ MonoBehaviour:
   _max: 250
   _speedIncrement: 1.25
   _delayToDisable: 1
---- !u!1001 &3302793608652041028
+--- !u!65 &270529583968724775
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7986062131299841029}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.34623244, z: 1.5698739}
+  m_Center: {x: 0, y: -0.069791004, z: 0.054011285}
+--- !u!1001 &1414289421074806339
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 360787908164507404}
     m_Modifications:
-    - target: {fileID: 1732144709205966, guid: 361b3921b68c940c288f39dcbdafc5e5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1857492736784566, guid: 361b3921b68c940c288f39dcbdafc5e5, type: 3}
       propertyPath: m_Name
       value: Done_Player 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1887596628364332, guid: 361b3921b68c940c288f39dcbdafc5e5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 4775180890844586, guid: 361b3921b68c940c288f39dcbdafc5e5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.36
       objectReference: {fileID: 0}
     - target: {fileID: 4988861108207678, guid: 361b3921b68c940c288f39dcbdafc5e5, type: 3}
       propertyPath: m_RootOrder
@@ -146,8 +156,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 361b3921b68c940c288f39dcbdafc5e5, type: 3}
---- !u!4 &3297857715095923578 stripped
+--- !u!4 &1418961449156474493 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4988861108207678, guid: 361b3921b68c940c288f39dcbdafc5e5, type: 3}
-  m_PrefabInstance: {fileID: 3302793608652041028}
+  m_PrefabInstance: {fileID: 1414289421074806339}
   m_PrefabAsset: {fileID: 0}
