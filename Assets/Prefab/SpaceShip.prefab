@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _min: 80
-  _max: 250
+  _max: 350
   _speedIncrement: 1.25
   _delayToDisable: 1
 --- !u!65 &270529583968724775
