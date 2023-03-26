@@ -34,13 +34,13 @@ namespace Assets.Scripts.Managers
 
         public void UpdateFastestSpeed(float speed)
         {
-            string text = "Fastest Speed Registered: " + speed.ToString();
+            string text = "Fastest Speed: " + speed.ToString("0.00");
             FastestSpeedTMPro.text = text;
         }
 
         public void UpdateLowestSpeed(float speed)
-        {
-            string text = "Lowest Speed Registered: " + speed.ToString();
+        {  
+            string text = "Lowest Speed: " + speed.ToString("0.00");
             LowestSpeedTMPro.text = text;
         }
 
