@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpaceShip : MonoBehaviour
 {
+    private SpaceShipSpawner _spawner;
+
     [Header("Speed Limits")]
     [Tooltip("A random number between those limits will be the speed")]
     [SerializeField] private float _min = 5f;
@@ -16,6 +18,11 @@ public class SpaceShip : MonoBehaviour
 
     [SerializeField] private float _delayToDisable = 1f;
 
+
+    public void AssignSpawner(SpaceShipSpawner spawner)
+    {
+        _spawner = spawner;
+    }
 
     // Start is called before the first frame update
     void Start()
