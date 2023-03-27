@@ -1622,7 +1622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _object: {fileID: 771624621821125262, guid: 88b227067c05af54c9283897fd79bd74, type: 3}
   _fibbonacci: 10
-  _delayToReplayMechanicAfterEnds: 2
+  _delayToReplayMechanicAfterEnds: 5
   _delayToNextIteration: 0.25
 --- !u!4 &1346787057
 Transform:
