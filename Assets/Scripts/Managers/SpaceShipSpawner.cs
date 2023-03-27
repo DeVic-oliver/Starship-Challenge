@@ -10,6 +10,12 @@ public class SpaceShipSpawner : MonoBehaviour
     [SerializeField] private SpaceShip _object;
     [SerializeField] private int _fibbonacci;
 
+    [Header("Settings for spawn")]
+    [Tooltip("Restarts the mechanic of spawn after fibonacci ends")]
+    [SerializeField] private float _delayToReplayMechanicAfterEnds = 5f;
+    [Tooltip("Delay to next calc of the next term of fibonacci")]
+    [SerializeField] private float _delayToNextIteration = 0.25f;
+
     private List<SpaceShip> _pool = new List<SpaceShip>();
     private long _poolTotal = 0;
 
@@ -81,8 +87,7 @@ public class SpaceShipSpawner : MonoBehaviour
     {
         while (true)
         {
-            float delayToReplayMechanicAfterEnds = 5f;
-            yield return new WaitForSeconds(delayToReplayMechanicAfterEnds);
+            yield return new WaitForSeconds(_delayToReplayMechanicAfterEnds);
             StartFibonacci();
         }
     }
@@ -107,8 +112,7 @@ public class SpaceShipSpawner : MonoBehaviour
             n1 = n2;
             n2 = nextTerm;
 
-            float delayToNextIteration = 0.25f;
-            yield return new WaitForSeconds(delayToNextIteration);
+            yield return new WaitForSeconds(_delayToNextIteration);
             StartCoroutine(StartCreationOfSpaceShipByFibonacci(currentTerm, n1, n2, nextTerm));
         }
     }
