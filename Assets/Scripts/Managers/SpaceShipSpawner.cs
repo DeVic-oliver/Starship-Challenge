@@ -81,7 +81,7 @@ public class SpaceShipSpawner : MonoBehaviour
     {
         while (true)
         {
-            float delayToReplayMechanicAfterEnds = 10f;
+            float delayToReplayMechanicAfterEnds = 5f;
             yield return new WaitForSeconds(delayToReplayMechanicAfterEnds);
             StartFibonacci();
         }
